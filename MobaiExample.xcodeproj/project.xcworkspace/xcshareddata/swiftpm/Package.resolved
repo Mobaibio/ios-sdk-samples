@@ -1,0 +1,15 @@
+{
+  "originHash" : "717a753c36f4cfca46d8c587e6e3409f7f1f56bab220d815a5b3159cbe314a6d",
+  "pins" : [
+    {
+      "identity" : "mobaibiometricspm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mobaibio/MobaiBiometricSPM",
+      "state" : {
+        "revision" : "1d1c8b68324165e17ed99f23f9d9b00573917bfe",
+        "version" : "2.1.2"
+      }
+    }
+  ],
+  "version" : 3
+}
