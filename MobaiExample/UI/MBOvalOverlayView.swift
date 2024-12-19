@@ -5,6 +5,7 @@
 
 import UIKit
 
+
 internal enum OvalStrokeColorSelected {
     case red
     case green
@@ -23,13 +24,11 @@ internal class MBOvalOverlayView: UIView {
     }
     
     public override func layoutSubviews() {
-        overlayFrame = CGRect(
-            x: (screenBounds.width - 300.0) / 2,
-            y: (screenBounds.height - 400.0) / 2,
-            width: 300.0,
-            height: 400.0
-        )
-        
+        let ovalWidth = bounds.height * 0.35
+        let ovalHeight = bounds.height * 0.45
+        let ovalLeft = (bounds.width - ovalWidth) / 2
+        let ovalTop = (bounds.height - ovalHeight) / 2
+        overlayFrame = CGRect(x: ovalLeft, y: ovalTop, width: ovalWidth, height: ovalHeight)
         draw()
     }
     

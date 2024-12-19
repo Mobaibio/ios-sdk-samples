@@ -145,7 +145,7 @@ public class MBCaptureSessionViewController: UIViewController {
                 title: "To continue the app need access for settings!",
                 message: "Go to Settings?",
                 options: "Settings", "Cancel"
-            ) { [weak self] option in
+            ) { option in
                 switch option {
                 case 0:
                     if let settingsUrl = URL(string: UIApplication.openSettingsURLString),
