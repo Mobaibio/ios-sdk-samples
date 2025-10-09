@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Mobaibio/MobaiBiometricSPM",
       "state" : {
-        "revision" : "1d1c8b68324165e17ed99f23f9d9b00573917bfe",
-        "version" : "2.1.2"
+        "revision" : "2fe6c12b8af7b3331d6eae31895e706bc92e3e76",
+        "version" : "2.3.1"
       }
     }
   ],

@@ -369,8 +369,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Mobaibio/MobaiBiometricSPM";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
+				kind = exactVersion;
+				version = 2.3.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
