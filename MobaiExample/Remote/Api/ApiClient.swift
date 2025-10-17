@@ -11,18 +11,14 @@ enum HttpMethod: String, CaseIterable {
     case POST
 }
 
-enum Endpoints: String, CaseIterable {
-    case videoToDecode = "/videoToDecodeDemo"
-}
-
 struct HttpClient {
     var httpMethod: HttpMethod = .GET
     var httpHeader: [String: String] = [:]
-    var endpoint: Endpoints
+    var endpoint: String
     var baseURL: String
     
     func withURL() -> URL {
-        guard let url = URL(string: self.baseURL + self.endpoint.rawValue) else {
+        guard let url = URL(string: self.baseURL + self.endpoint) else {
             fatalError("Invalid URL")
         }
         return url

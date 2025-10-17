@@ -99,11 +99,16 @@ public class MBCaptureSessionViewController: UIViewController {
   
   public init(with captureSessionOptions: MBCaptureSessionOptions = MBCaptureSessionOptions(), style: MBUIOptions = MBUIOptions()) {
     let localUrl: String = Bundle.main.infoDictionary?["LOCAL_URL"] as! String
+    var endPoint: String = Bundle.main.infoDictionary?["END_POINT"] as! String
+    if(!endPoint.starts(with: "/")){
+      endPoint = "/\(endPoint)"
+    }
+    
     self.style = style
     self.captureSessionOptions = captureSessionOptions
     self.mbCaptureSessionView = MBCaptureSessionView(options: captureSessionOptions)
     self.mbCaptureSessionView.translatesAutoresizingMaskIntoConstraints = false
-    self.videoDecodingService = VideoDecodingService(baseURL: localUrl)
+    self.videoDecodingService = VideoDecodingService(baseURL: localUrl, endPoint: endPoint)
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -226,7 +231,9 @@ public class MBCaptureSessionViewController: UIViewController {
   }
   
   public override func viewWillAppear(_ animated: Bool) {
-    let sessionID = UUID().uuidString
+    let sessionID: String? = (Bundle.main.object(forInfoDictionaryKey: "SessionId") as? String).flatMap { s in
+          return s.isEmpty ? nil : s
+      }
     mbCaptureSessionView.onStartCapturing(sessionId: sessionID)
     progressView.setProgress(0, animated: false)
   }
@@ -273,7 +280,7 @@ extension MBCaptureSessionViewController: MBCaptureSessionDelegate, MBOnValidati
   
   public func onSuccess(result: MBCaptureSessionResult) {
     Task{
-      let request = VideoDecodingRequest(video_base64: result.capturedVideoData.base64EncodedString(), session_meta_data: result.sessionMetaData!, face_image_base64: result.faceImage.base64EncodedString())
+      let request = VideoDecodingRequest(video_base64: result.capturedVideoData.base64EncodedString(), session_meta_data: result.sessionVideoMetaData, face_image_base64: result.faceImage.base64EncodedString())
       
       let response = try await videoDecodingService.post(httpHeader: nil, request: request)
       

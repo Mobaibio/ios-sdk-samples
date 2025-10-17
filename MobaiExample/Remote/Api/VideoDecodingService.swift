@@ -6,25 +6,27 @@
 //
 
 public protocol VideoDecodingDelegate {
-    func post(httpHeader: [String: String]?, request: VideoDecodingRequest) async throws -> VideoDecodingResponse
+  func post(httpHeader: [String: String]?, request: VideoDecodingRequest) async throws -> VideoDecodingResponse
 }
 
 public class VideoDecodingService: VideoDecodingDelegate {
-    var baseURL: String
-    
-    public init(baseURL: String) {
-        self.baseURL = baseURL
-    }
-    
-    public func post(httpHeader: [String: String]?, request: VideoDecodingRequest) async throws -> VideoDecodingResponse {
-        return try await ApiClient().sendRequest(
-            requestData: request,
-            httpClient: .init(
-                httpMethod: .POST,
-                httpHeader: httpHeader ?? [:],
-                endpoint: .videoToDecode,
-                baseURL: self.baseURL
-            )
-        )
-    }
+  var baseURL: String
+  var endPoint: String
+  
+  public init(baseURL: String, endPoint: String) {
+    self.baseURL = baseURL
+    self.endPoint = endPoint
+  }
+  
+  public func post(httpHeader: [String: String]?, request: VideoDecodingRequest) async throws -> VideoDecodingResponse {
+    return try await ApiClient().sendRequest(
+      requestData: request,
+      httpClient: .init(
+        httpMethod: .POST,
+        httpHeader: httpHeader ?? [:],
+        endpoint: self.endPoint,
+        baseURL: self.baseURL
+      )
+    )
+  }
 }
