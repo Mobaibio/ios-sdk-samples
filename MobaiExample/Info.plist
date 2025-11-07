@@ -7,7 +7,7 @@
 	<key>END_POINT</key>
 	<string>videoToDecodeDemo</string>
 	<key>SessionId</key>
-	<string></string>
+	<string>sessionId</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) camera use</string>
 	<key>UIApplicationSceneManifest</key>
