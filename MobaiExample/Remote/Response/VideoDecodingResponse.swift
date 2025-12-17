@@ -6,29 +6,77 @@
 //
 
 public struct VideoDecodingResponse: Codable {
-    public var message: String?
-    public var filename: String?
-    public var video_info: VideoInfo?
-    public var status: String?
+    let id: String
+    let recognition: RecognitionObject?
+    let pad: PadObject?
+    let authenticity: AuthenticityObject?
+    let integrity: IntegrityObject?
+    let deepFake: DeepFakeObject?
+    let faceQualityProbe: FaceQualityProbeObject?
+    let error: ErrorObject?
     
-    public init(message: String? = nil, filename: String? = nil, video_info: VideoInfo? = nil, status: String? = nil) {
-        self.message = message
-        self.filename = filename
-        self.video_info = video_info
-        self.status = status
+    enum CodingKeys: String, CodingKey {
+        case id
+        case recognition
+        case pad
+        case authenticity
+        case integrity
+        case deepFake = "deepfake"
+        case faceQualityProbe = "face_quality_probe"
+        case error
     }
 }
 
-public struct VideoInfo: Codable {
-  public var fps: Int?
-  public var width: Int?
-  public var height: Int?
-  public var frame_count: Int?
-  
-  public init(fps: Int? = nil, width: Int? = nil, height: Int? = nil, frame_count: Int? = nil) {
-      self.fps = fps
-      self.width = width
-      self.height = height
-      self.frame_count = frame_count
-  }
+struct RecognitionObject: Codable {
+    let passed: Bool
+    let score: Double
+}
+
+struct PadObject: Codable {
+    let passed: Bool
+    let score: Double
+}
+
+struct AuthenticityObject: Codable {
+    let passed: Bool
+}
+
+struct IntegrityObject: Codable {
+    let passed: Bool
+}
+
+struct DeepFakeObject: Codable {
+    let passed: Bool
+    let score: Double
+}
+
+struct FaceQualityProbeObject: Codable {
+    let metrics: FaceQualityMetrics
+}
+
+struct FaceQualityMetrics: Codable {
+    let illuminationUniformity: String
+    let luminanceMean: String
+    let luminanceVariance: String
+    let underExposurePrevention: String
+    let overExposurePrevention: String
+    let dynamicRange: String
+    let sharpness: String
+    let naturalColor: String
+
+    enum CodingKeys: String, CodingKey {
+        case illuminationUniformity = "illumination_uniformity"
+        case luminanceMean = "luminance_mean"
+        case luminanceVariance = "luminance_variance"
+        case underExposurePrevention = "under_exposure_prevention"
+        case overExposurePrevention = "over_exposure_prevention"
+        case dynamicRange = "dynamic_range"
+        case sharpness
+        case naturalColor = "natural_color"
+    }
+}
+
+struct ErrorObject: Codable {
+    let code: Int
+    let message: String
 }

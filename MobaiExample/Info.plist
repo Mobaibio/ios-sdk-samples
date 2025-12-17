@@ -2,30 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LOCAL_URL</key>
-	<string>http://192.168.68.8:8000</string>
 	<key>END_POINT</key>
-	<string>videoToDecodeDemo</string>
+	<string>videoToDecode</string>
+	<key>LOCAL_PORT</key>
+	<string>8010</string>
+	<key>LOCAL_URL</key>
+	<string>http://192.168.0.113</string>
 	<key>SessionId</key>
 	<string>sessionId</string>
-	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) camera use</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
 </dict>
 </plist>
